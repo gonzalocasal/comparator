@@ -38,10 +38,10 @@ public class SubVersionComparator implements StringComparator {
 
     private List<SubStringType> getSubStringByType(String input) {
         List<SubStringType> subStringTypes = new ArrayList<>();
-        char[] chars = input.toCharArray();
+
         StringBuilder subStr = new StringBuilder();
-        int type = Character.getType(chars[0]);
-        for (char c : chars) {
+        int type = Character.getType(input.charAt(0));
+        for (char c : input.toCharArray()) {
             if (Character.getType(c) == type) {
                 subStr.append(c);
             } else {
