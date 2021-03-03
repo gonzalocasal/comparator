@@ -15,6 +15,10 @@ class VersionComparatorTests {
 
 		conclusion = versionComparator.compare("11.21aba3.3", "11.21abc2.3");
 		Assert.assertEquals(Conclusion.BEFORE, conclusion);
+
+		conclusion = versionComparator.compare("11.21aba3.3", "11.21z.3");
+		Assert.assertEquals(Conclusion.BEFORE, conclusion);
+
 	}
 
 	@Test
