@@ -6,30 +6,34 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Character.getType;
+import static java.lang.Character.isDigit;
+
 @Getter
 public class SubVersion implements Comparable<SubVersion> {
 
-    private final List<SubVersionType> subVersionTypes;
     private final String subVersionString;
+    private final List<SubVersionType> subVersionTypes;
 
     public SubVersion(String subVersionString) {
         this.subVersionString = subVersionString;
         this.subVersionTypes = new ArrayList<>();
 
         StringBuilder subStr = new StringBuilder();
-        int type = Character.getType(subVersionString.charAt(0));
+        char buildChar = subVersionString.charAt(0);
+        int type = getType(buildChar);
 
-        for (char c : subVersionString.toCharArray()) {
-            if (Character.getType(c) == type) {
-                subStr.append(c);
-            } else {
-                subVersionTypes.add(new SubVersionType(subStr.toString(), Character.isDigit(subStr.charAt(0))));
+        for (int i = 0; i < subVersionString.length(); i++) {
+            char c = subVersionString.charAt(i);
+            if (getType(c) != type ) {
+                subVersionTypes.add(new SubVersionType(subStr.toString(), isDigit(buildChar)));
+                type = getType(c);
                 subStr = new StringBuilder();
-                subStr.append(c);
-                type = Character.getType(c);
             }
+            subStr.append(c);
+            buildChar = c;
         }
-        subVersionTypes.add(new SubVersionType(subStr.toString(), Character.isDigit(subStr.charAt(0))));
+        subVersionTypes.add(new SubVersionType(subStr.toString(), isDigit(buildChar)));
     }
 
     @Override

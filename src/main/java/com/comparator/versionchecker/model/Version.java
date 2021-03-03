@@ -14,14 +14,14 @@ import static com.comparator.versionchecker.util.Constants.VERSION_SPLIT_REGEX;
 @AllArgsConstructor
 public class Version implements Comparable<Version> {
 
-    private final List<SubVersion> subVersions;
     private final String versionString;
+    private final List<SubVersion> subVersions;
 
     public Version(String versionString) {
         this.versionString = versionString;
         this.subVersions = new ArrayList<>();
-        List<String> strings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
-        strings.forEach((s -> subVersions.add(new SubVersion(s))));
+        List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
+        subVersionStrings.forEach((s -> subVersions.add(new SubVersion(s))));
     }
 
     @Override
