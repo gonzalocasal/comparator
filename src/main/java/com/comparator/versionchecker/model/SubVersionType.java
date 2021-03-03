@@ -19,18 +19,18 @@ public class SubVersionType implements Comparable<SubVersionType> {
     }
 
     @Override
-    public int compareTo(SubVersionType o) {
-        if (this.isDigit && o.isDigit()) {
-            return Integer.compare(Integer.parseInt(this.getSubString()), Integer.parseInt(o.getSubString()));
+    public int compareTo(SubVersionType st) {
+        if (this.isDigit && st.isDigit()) {
+            return Integer.compare(Integer.parseInt(this.getSubString()), Integer.parseInt(st.getSubString()));
         }
-        if (!this.isDigit && o.isDigit()) {
+        if (!this.isDigit && st.isDigit()) {
             return 1;
         }
-        if (this.isDigit && !o.isDigit()) {
+        if (this.isDigit && !st.isDigit()) {
             return -1;
         }
-        if (!this.isDigit && !o.isDigit()) {
-            return this.subString.compareTo(o.getSubString());
+        if (!this.isDigit && !st.isDigit()) {
+            return this.subString.compareTo(st.getSubString());
         }
 
         return 0;
