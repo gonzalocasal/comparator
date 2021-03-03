@@ -1,32 +1,26 @@
 package com.comparator.versionchecker.model;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import static com.comparator.versionchecker.model.Conclusion.*;
 
 @Component
-@AllArgsConstructor
-public class VersionComparator implements StringComparator {
+public class VersionComparator {
 
-    private final SubVersionComparator subVersionComparator;
-
-    @Override
     public Conclusion compare(final String inputA, final String inputB) {
 
-        String[] versionArrayA = inputA.split("\\.");
-        String[] versionArrayB = inputB.split("\\.");
+        Version versionA = new Version(inputA);
+        Version versionB = new Version(inputB);
 
-        Conclusion conclusion = EQUAL;
-        int subVersionCount = Math.min(versionArrayA.length, versionArrayB.length);
-        int index = 0;
-        while (EQUAL.equals(conclusion) && index < subVersionCount) {
-            conclusion = subVersionComparator.compare(versionArrayA[index], versionArrayB[index]);
-            index ++;
+        int i = versionA.compareTo(versionB);
+
+        Conclusion conclusion;
+        if (i == 0) {
+            conclusion = EQUAL;
+        } else {
+            conclusion = (i < 0) ? BEFORE : AFTER;
         }
-        if (EQUAL.equals(conclusion) && (versionArrayA.length != versionArrayB.length)) {
-            conclusion = (inputA.length() < inputB.length()) ? BEFORE : AFTER;
-        }
+
         return conclusion;
     }
 }

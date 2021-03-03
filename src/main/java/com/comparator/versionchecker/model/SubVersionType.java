@@ -1,11 +1,11 @@
 package com.comparator.versionchecker.model;
 
-public class SubStringType implements Comparable<SubStringType> {
+public class SubVersionType implements Comparable<SubVersionType> {
 
     private final boolean isDigit;
     private final String subString;
 
-    public SubStringType(String subStr, boolean isDigit) {
+    public SubVersionType(String subStr, boolean isDigit) {
         this.subString = subStr;
         this.isDigit = isDigit;
     }
@@ -19,7 +19,7 @@ public class SubStringType implements Comparable<SubStringType> {
     }
 
     @Override
-    public int compareTo(SubStringType o) {
+    public int compareTo(SubVersionType o) {
         if (this.isDigit && o.isDigit()) {
             return Integer.compare(Integer.parseInt(this.getSubString()), Integer.parseInt(o.getSubString()));
         }

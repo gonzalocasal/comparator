@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class VersionComparatorTests {
 
-	private final VersionComparator versionComparator = new VersionComparator(new SubVersionComparator());
+	private final VersionComparator versionComparator = new VersionComparator();
 
 	@Test
 	void alphaNumericTest() {
