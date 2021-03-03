@@ -11,8 +11,8 @@ public class VersionComparator implements StringComparator {
 
         int index = 0;
 
-        String[] inputArray = inputA.split(".");
-        String[] inputArrayB = inputA.split(".");
+        String[] inputArray = inputA.split("\\.");
+        String[] inputArrayB = inputA.split("\\.");
 
         int charCount = calculateCharCount(inputArray, inputArrayB);
 
