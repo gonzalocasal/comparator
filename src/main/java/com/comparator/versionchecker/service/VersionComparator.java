@@ -2,7 +2,6 @@ package com.comparator.versionchecker.service;
 
 import com.comparator.versionchecker.model.Conclusion;
 import com.comparator.versionchecker.model.Version;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import static com.comparator.versionchecker.model.Conclusion.*;
