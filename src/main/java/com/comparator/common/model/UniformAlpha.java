@@ -1,13 +1,13 @@
-package com.comparator.versionchecker.model;
+package com.comparator.common.model;
 
-public class SubVersionType implements Comparable<SubVersionType> {
+public class UniformAlpha implements Comparable<UniformAlpha> {
 
+    private final String uniformAlpha;
     private final boolean isDigit;
-    private final String subString;
 
-    public SubVersionType(String subStr) {
-        this.subString = subStr;
-        this.isDigit = Character.isDigit(subStr.charAt(0));
+    public UniformAlpha(String homogeneousAlphaNumeric) {
+        this.uniformAlpha = homogeneousAlphaNumeric;
+        this.isDigit = Character.isDigit(homogeneousAlphaNumeric.charAt(0));
     }
 
     public boolean isDigit() {
@@ -15,11 +15,11 @@ public class SubVersionType implements Comparable<SubVersionType> {
     }
 
     public String getSubString() {
-        return subString;
+        return uniformAlpha;
     }
 
     @Override
-    public int compareTo(SubVersionType st) {
+    public int compareTo(UniformAlpha st) {
         if (this.isDigit && st.isDigit()) {
             return Integer.compare(Integer.parseInt(this.getSubString()), Integer.parseInt(st.getSubString()));
         }
@@ -30,7 +30,7 @@ public class SubVersionType implements Comparable<SubVersionType> {
             return -1;
         }
         if (!this.isDigit && !st.isDigit()) {
-            return this.subString.compareTo(st.getSubString());
+            return this.uniformAlpha.compareTo(st.getSubString());
         }
 
         return 0;

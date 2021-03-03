@@ -1,5 +1,6 @@
 package com.comparator.versionchecker.model;
 
+import com.comparator.common.model.Alpha;
 import com.comparator.versionchecker.service.ListComparator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +16,13 @@ import static com.comparator.versionchecker.util.Constants.VERSION_SPLIT_REGEX;
 public class Version implements Comparable<Version> {
 
     private final String versionString;
-    private final List<SubVersion> subVersions;
+    private final List<Alpha> subversions;
 
     public Version(String versionString) {
         this.versionString = versionString;
-        this.subVersions = new ArrayList<>();
+        this.subversions = new ArrayList<>();
         List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
-        subVersionStrings.forEach((s -> subVersions.add(new SubVersion(s))));
+        subVersionStrings.forEach((s -> subversions.add(new Alpha(s))));
     }
 
     @Override
@@ -29,8 +30,8 @@ public class Version implements Comparable<Version> {
         if (versionString.equals(v.getVersionString())) {
             return 0;
         } else {
-            ListComparator<SubVersion> subVersionsComparator = new ListComparator<>();
-            return subVersionsComparator.compare(this.subVersions, v.getSubVersions());
+            ListComparator<Alpha> subVersionsComparator = new ListComparator<>();
+            return subVersionsComparator.compare(this.subversions, v.getSubversions());
         }
     }
 }
