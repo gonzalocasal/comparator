@@ -18,24 +18,15 @@ public class VersionComparator implements StringComparator {
         String[] versionArrayB = inputB.split("\\.");
 
         Conclusion conclusion = EQUAL;
-        int subVersionCount = getSubVersionCount(versionArrayA, versionArrayB);
+        int subVersionCount = Math.min(versionArrayA.length, versionArrayB.length);
         int index = 0;
         while (EQUAL.equals(conclusion) && index < subVersionCount) {
             conclusion = subVersionComparator.compare(versionArrayA[index], versionArrayB[index]);
             index ++;
         }
-        if (EQUAL.equals(conclusion) && areDifferentLength(versionArrayA, versionArrayB)) {
+        if (EQUAL.equals(conclusion) && (versionArrayA.length != versionArrayB.length)) {
             conclusion = (inputA.length() < inputB.length()) ? BEFORE : AFTER;
         }
         return conclusion;
     }
-
-    private boolean areDifferentLength(String[] inputA, String[] inputB) {
-        return inputA.length != inputB.length;
-    }
-
-    private int getSubVersionCount(String[] inputA, String[] inputB) {
-        return Math.min(inputA.length, inputB.length);
-    }
-
 }
