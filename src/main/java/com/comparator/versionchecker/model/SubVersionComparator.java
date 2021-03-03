@@ -33,9 +33,9 @@ public class SubVersionComparator implements StringComparator {
         return conclusion;
     }
 
-    private List<SubStringType> getSubStringByType(String inputA) {
+    private List<SubStringType> getSubStringByType(String input) {
         List<SubStringType> subStringTypes = new ArrayList<>();
-        char[] charsA = inputA.toCharArray();
+        char[] charsA = input.toCharArray();
         StringBuilder subStr = new StringBuilder();
         int type = Character.getType(charsA[0]);
         for (char c : charsA) {
