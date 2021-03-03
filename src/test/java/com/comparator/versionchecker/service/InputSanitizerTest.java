@@ -10,7 +10,7 @@ public class InputSanitizerTest {
     private final InputSanitizer inputSanitizer = new InputSanitizer();
 
     @Test
-    void sameNumericTest() {
+    void sanitizerTest() {
         String sanitized = inputSanitizer.sanitize("1.0.3.a");
         Assert.assertEquals("1.0.3.a", sanitized);
 
