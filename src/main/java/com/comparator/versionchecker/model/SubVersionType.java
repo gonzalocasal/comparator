@@ -5,9 +5,9 @@ public class SubVersionType implements Comparable<SubVersionType> {
     private final boolean isDigit;
     private final String subString;
 
-    public SubVersionType(String subStr, boolean isDigit) {
+    public SubVersionType(String subStr) {
         this.subString = subStr;
-        this.isDigit = isDigit;
+        this.isDigit = Character.isDigit(subStr.charAt(0));
     }
 
     public boolean isDigit() {

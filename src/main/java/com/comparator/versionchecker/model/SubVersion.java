@@ -25,14 +25,13 @@ public class SubVersion implements Comparable<SubVersion> {
 
         for (char c : subVersionString.toCharArray()) {
             if (getType(c) != type ) {
-                subVersionTypes.add(new SubVersionType(subStr.toString(), isDigit(buildChar)));
+                subVersionTypes.add(new SubVersionType(subStr.toString()));
                 type = getType(c);
                 subStr = new StringBuilder();
             }
             subStr.append(c);
-            buildChar = c;
         }
-        subVersionTypes.add(new SubVersionType(subStr.toString(), isDigit(buildChar)));
+        subVersionTypes.add(new SubVersionType(subStr.toString()));
     }
 
     @Override
