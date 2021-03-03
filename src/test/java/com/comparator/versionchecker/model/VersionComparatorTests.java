@@ -21,6 +21,9 @@ class VersionComparatorTests {
 
 		conclusion = versionComparator.compare("11", "11.21z.3");
 		Assert.assertEquals(Conclusion.BEFORE, conclusion);
+
+		conclusion = versionComparator.compare("1a", "1");
+		Assert.assertEquals(Conclusion.AFTER, conclusion);
 	}
 
 	@Test

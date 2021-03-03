@@ -28,6 +28,9 @@ public class SubVersionComparator implements StringComparator {
                 }
                 index ++;
             }
+            if (EQUAL.equals(conclusion) && (subStringByTypeA.size() != subStringByTypeB.size())) {
+                conclusion = (subStringByTypeA.size() < subStringByTypeB.size()) ? BEFORE : AFTER;
+            }
 
         }
         return conclusion;
