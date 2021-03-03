@@ -9,6 +9,13 @@ class VersionComparatorTests {
 	private final VersionComparator versionComparator = new VersionComparator(new SubVersionComparator());
 
 	@Test
+	void alphaNumericTest() {
+		Conclusion conclusion = versionComparator.compare("11.21abc3.3", "11.21abc2.3");
+		Assert.assertEquals(Conclusion.BEFORE, conclusion);
+	}
+
+
+	@Test
 	void sameNumericTest() {
 		Conclusion conclusion = versionComparator.compare("1.0.0.1", "1.0.0.1");
 		Assert.assertEquals(Conclusion.EQUAL, conclusion);

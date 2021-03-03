@@ -14,17 +14,17 @@ public class VersionComparator implements StringComparator {
     @Override
     public Conclusion compare(final String inputA, final String inputB) {
 
-        String[] inputArray = inputA.split("\\.");
-        String[] inputArrayB = inputB.split("\\.");
+        String[] versionArrayA = inputA.split("\\.");
+        String[] versionArrayB = inputB.split("\\.");
 
         Conclusion conclusion = EQUAL;
-        int subVersionCount = getSubVersionCount(inputArray, inputArrayB);
+        int subVersionCount = getSubVersionCount(versionArrayA, versionArrayB);
         int index = 0;
         while (EQUAL.equals(conclusion) && index < subVersionCount) {
-            conclusion = subVersionComparator.compare(inputArray[index], inputArrayB[index]);
+            conclusion = subVersionComparator.compare(versionArrayA[index], versionArrayB[index]);
             index ++;
         }
-        if (EQUAL.equals(conclusion) && areDifferentLength(inputArray, inputArrayB)) {
+        if (EQUAL.equals(conclusion) && areDifferentLength(versionArrayA, versionArrayB)) {
             conclusion = (inputA.length() < inputB.length()) ? BEFORE : AFTER;
         }
         return conclusion;
