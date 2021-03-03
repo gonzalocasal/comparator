@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class VersionComparatorTests {
 
-	private final VersionComparator versionComparator = new VersionComparator();
+	private final VersionComparator versionComparator = new VersionComparator(new SubVersionComparator());
 
 	@Test
 	void sameNumericTest() {
@@ -17,6 +17,9 @@ class VersionComparatorTests {
 	@Test
 	void diffNumericTest() {
 		Conclusion conclusion = versionComparator.compare("18.2", "5.7");
+		Assert.assertEquals(Conclusion.AFTER, conclusion);
+
+		conclusion = versionComparator.compare("23.0.2", "22.0.0");
 		Assert.assertEquals(Conclusion.AFTER, conclusion);
 	}
 
