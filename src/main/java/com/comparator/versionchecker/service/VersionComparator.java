@@ -12,16 +12,13 @@ public class VersionComparator {
 
     public Conclusion compare(final String inputA, final String inputB) {
 
-        Version versionA = new Version(inputA);
-        Version versionB = new Version(inputB);
-
-        int i = versionA.compareTo(versionB);
+        int result = new Version(inputA).compareTo(new Version(inputB));
 
         Conclusion conclusion;
-        if (i == 0) {
+        if (result == 0) {
             conclusion = EQUAL;
         } else {
-            conclusion = (i < 0) ? BEFORE : AFTER;
+            conclusion = (result < 0) ? BEFORE : AFTER;
         }
 
         return conclusion;
