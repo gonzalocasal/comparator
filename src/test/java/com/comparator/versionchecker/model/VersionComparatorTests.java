@@ -17,7 +17,6 @@ class VersionComparatorTests {
 		Assert.assertEquals(Conclusion.BEFORE, conclusion);
 	}
 
-
 	@Test
 	void sameNumericTest() {
 		Conclusion conclusion = versionComparator.compare("1.0.0.1", "1.0.0.1");
@@ -31,12 +30,6 @@ class VersionComparatorTests {
 
 		conclusion = versionComparator.compare("23.0.2", "22.0.0");
 		Assert.assertEquals(Conclusion.AFTER, conclusion);
-	}
-
-	@Test
-	void diffAlphaTest() {
-		Conclusion conclusion = versionComparator.compare("1a.bc", "1a.bcd");
-		Assert.assertEquals(Conclusion.BEFORE, conclusion);
 	}
 
 	@Test
