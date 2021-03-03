@@ -12,9 +12,9 @@ public class InputSanitizerTest {
     @Test
     void sameNumericTest() {
         String sanitized = inputSanitizer.sanitize("1.0.3.a");
-        Assert.assertEquals("103a", sanitized);
+        Assert.assertEquals("1.0.3.a", sanitized);
 
         sanitized = inputSanitizer.sanitize("1. # % @0.3.a");
-        Assert.assertEquals("103a", sanitized);
+        Assert.assertEquals("1.0.3.a", sanitized);
     }
 }

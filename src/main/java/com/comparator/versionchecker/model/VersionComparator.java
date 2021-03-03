@@ -8,11 +8,17 @@ public class VersionComparator implements StringComparator {
 
     @Override
     public Conclusion compare(final String inputA, final String inputB) {
-        int charCount = calculateCharCount(inputA, inputB);
+
         int index = 0;
+
+        String[] inputArray = inputA.split(".");
+        String[] inputArrayB = inputA.split(".");
+
+        int charCount = calculateCharCount(inputArray, inputArrayB);
+
         Conclusion conclusion = EQUAL;
         while (EQUAL.equals(conclusion) && index < charCount) {
-            conclusion = compareChar(inputA, inputB, index);
+            conclusion = compareChar(inputArray, inputArrayB, index);
             index ++;
         }
         if (EQUAL.equals(conclusion) && areDifferentLength(inputA, inputB)) {
@@ -26,16 +32,16 @@ public class VersionComparator implements StringComparator {
         return inputA.length() != inputB.length();
     }
 
-    private Conclusion compareChar(String inputA, String inputB, int index) {
-        if (inputA.charAt(index) == inputB.charAt(index)) {
+    private Conclusion compareChar(String[] inputA, String[] inputB, int index) {
+        if (inputA[index].equals(inputB[index])) {
             return EQUAL;
         } else {
-            return (inputA.charAt(index) < inputB.charAt(index)) ? BEFORE : AFTER;
+            return (inputA[index].compareTo(inputB[index]) < 0) ? BEFORE : AFTER;
         }
     }
 
-    private int calculateCharCount(String inputA, String inputB) {
-        return Math.min(inputA.length(), inputB.length());
+    private int calculateCharCount(String[] inputA, String[] inputB) {
+        return Math.min(inputA.length, inputB.length);
     }
 
 }

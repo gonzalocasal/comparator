@@ -10,19 +10,19 @@ class VersionComparatorTests {
 
 	@Test
 	void sameNumericTest() {
-		Conclusion conclusion = versionComparator.compare("1001", "1001");
+		Conclusion conclusion = versionComparator.compare("1.0.0.1", "1.0.0.1");
 		Assert.assertEquals(Conclusion.EQUAL, conclusion);
 	}
 
 	@Test
 	void diffNumericTest() {
-		Conclusion conclusion = versionComparator.compare("20", "1001");
+		Conclusion conclusion = versionComparator.compare("18.2", "5.7");
 		Assert.assertEquals(Conclusion.AFTER, conclusion);
 	}
 
 	@Test
 	void diffAlphaTest() {
-		Conclusion conclusion = versionComparator.compare("abc", "abcd");
+		Conclusion conclusion = versionComparator.compare("1a.bc", "1a.bcd");
 		Assert.assertEquals(Conclusion.BEFORE, conclusion);
 	}
 

@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("versions/compare")
-
 public class VersionsController {
 
   private final InputSanitizer inputSanitizer;
@@ -23,7 +22,6 @@ public class VersionsController {
   @Value("${template.versions.compare.response}")
   private String responseTemplate;
 
-  @Autowired
   public VersionsController(InputSanitizer inputSanitizer, VersionComparator versionComparator) {
     this.inputSanitizer = inputSanitizer;
     this.versionComparator = versionComparator;
