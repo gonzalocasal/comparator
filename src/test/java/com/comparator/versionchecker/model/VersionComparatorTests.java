@@ -1,5 +1,6 @@
 package com.comparator.versionchecker.model;
 
+import com.comparator.versionchecker.service.VersionComparator;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 

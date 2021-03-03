@@ -1,5 +1,6 @@
 package com.comparator.versionchecker.model;
 
+import com.comparator.versionchecker.service.ListComparator;
 import lombok.Getter;
 
 import java.util.ArrayList;

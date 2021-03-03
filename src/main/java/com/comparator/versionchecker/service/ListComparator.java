@@ -1,4 +1,4 @@
-package com.comparator.versionchecker.model;
+package com.comparator.versionchecker.service;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ public class ListComparator<T extends Comparable<T>> {
 
     public int compare(List<T> listA, List<T> listB) {
         int result = 0;
-        int minSubVersionsCount = Math.min(listA.size(), listB.size());
         int index = 0;
+        int minSubVersionsCount = Math.min(listA.size(), listB.size());
+
         while (result == 0 && index < minSubVersionsCount) {
             result = listA.get(index).compareTo(listB.get(index));
             index ++;

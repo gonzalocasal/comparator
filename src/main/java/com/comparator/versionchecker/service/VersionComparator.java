@@ -1,10 +1,13 @@
-package com.comparator.versionchecker.model;
+package com.comparator.versionchecker.service;
 
+import com.comparator.versionchecker.model.Conclusion;
+import com.comparator.versionchecker.model.Version;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import static com.comparator.versionchecker.model.Conclusion.*;
 
-@Component
+@Service
 public class VersionComparator {
 
     public Conclusion compare(final String inputA, final String inputB) {

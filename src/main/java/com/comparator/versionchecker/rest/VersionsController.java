@@ -1,8 +1,8 @@
 package com.comparator.versionchecker.rest;
 
 import com.comparator.versionchecker.model.Conclusion;
-import com.comparator.versionchecker.model.VersionComparator;
 import com.comparator.versionchecker.service.InputSanitizer;
+import com.comparator.versionchecker.service.VersionComparator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
