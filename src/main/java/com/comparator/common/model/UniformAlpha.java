@@ -1,27 +1,22 @@
 package com.comparator.common.model;
 
+import lombok.Getter;
+
+@Getter
 public class UniformAlpha implements Comparable<UniformAlpha> {
 
     private final String uniformAlpha;
     private final boolean isDigit;
 
-    public UniformAlpha(String homogeneousAlphaNumeric) {
-        this.uniformAlpha = homogeneousAlphaNumeric;
-        this.isDigit = Character.isDigit(homogeneousAlphaNumeric.charAt(0));
-    }
-
-    public boolean isDigit() {
-        return isDigit;
-    }
-
-    public String getSubString() {
-        return uniformAlpha;
+    public UniformAlpha(String uniformAlpha) {
+        this.uniformAlpha = uniformAlpha;
+        this.isDigit = Character.isDigit(uniformAlpha.charAt(0));
     }
 
     @Override
     public int compareTo(UniformAlpha st) {
         if (this.isDigit && st.isDigit()) {
-            return Integer.compare(Integer.parseInt(this.getSubString()), Integer.parseInt(st.getSubString()));
+            return Integer.compare(Integer.parseInt(this.getUniformAlpha()), Integer.parseInt(st.getUniformAlpha()));
         }
         if (!this.isDigit && st.isDigit()) {
             return 1;
@@ -30,7 +25,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
             return -1;
         }
         if (!this.isDigit && !st.isDigit()) {
-            return this.uniformAlpha.compareTo(st.getSubString());
+            return this.uniformAlpha.compareTo(st.getUniformAlpha());
         }
 
         return 0;
