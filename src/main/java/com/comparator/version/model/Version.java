@@ -16,13 +16,13 @@ import static com.comparator.version.util.Constants.VERSION_SPLIT_REGEX;
 public class Version implements Comparable<Version> {
 
     private final String versionString;
-    private final List<Alpha> subversions;
+    private final List<Alpha> subVersions;
 
     public Version(String versionString) {
         this.versionString = versionString;
-        this.subversions = new ArrayList<>();
+        this.subVersions = new ArrayList<>();
         List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
-        subVersionStrings.forEach((s -> subversions.add(new Alpha(s))));
+        subVersionStrings.forEach((s -> subVersions.add(new Alpha(s))));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Version implements Comparable<Version> {
             return 0;
         } else {
             ListComparator<Alpha> subVersionsComparator = new ListComparator<>();
-            return subVersionsComparator.compare(this.subversions, v.getSubversions());
+            return subVersionsComparator.compare(this.subVersions, v.getSubVersions());
         }
     }
 }
