@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.comparator.version.util.Constants.ALPHANUMERIC_REGEX;
 import static java.lang.Character.getType;
 
 @Getter
@@ -15,7 +16,7 @@ public class Alpha implements Comparable<Alpha> {
     private final List<UniformAlpha> uniformAlphas;
 
     public Alpha(String alphaNumeric) {
-        this.alphanumeric = alphaNumeric;
+        this.alphanumeric = alphaNumeric.replaceAll(ALPHANUMERIC_REGEX, "");
         this.uniformAlphas = new ArrayList<>();
         buildUniformAlphas(alphaNumeric);
     }
