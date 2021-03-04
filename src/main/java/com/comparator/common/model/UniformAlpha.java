@@ -2,6 +2,8 @@ package com.comparator.common.model;
 
 import lombok.Getter;
 
+import static com.comparator.version.util.Constants.*;
+
 @Getter
 public class UniformAlpha implements Comparable<UniformAlpha> {
 
@@ -19,15 +21,15 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
             return Integer.compare(Integer.parseInt(this.getUniformAlpha()), Integer.parseInt(st.getUniformAlpha()));
         }
         if (!this.isDigit && st.isDigit()) {
-            return 1;
+            return COMPARABLE_HIGHER;
         }
         if (this.isDigit && !st.isDigit()) {
-            return -1;
+            return COMPARABLE_LOWER;
         }
         if (!this.isDigit && !st.isDigit()) {
             return this.uniformAlpha.compareTo(st.getUniformAlpha());
         }
 
-        return 0;
+        return COMPARABLE_EQUAL;
     }
 }

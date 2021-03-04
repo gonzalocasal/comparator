@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.comparator.version.util.Constants.ALPHANUMERIC_REGEX;
+import static com.comparator.version.util.Constants.COMPARABLE_EQUAL;
 import static java.lang.Character.getType;
 
 @Getter
@@ -37,7 +38,7 @@ public class Alpha implements Comparable<Alpha> {
     @Override
     public int compareTo(Alpha s) {
         if (alphanumeric.equals(s.getAlphanumeric())) {
-            return 0;
+            return COMPARABLE_EQUAL;
         } else {
             ListComparator<UniformAlpha> subVersionsTypesComparator = new ListComparator<>();
             return subVersionsTypesComparator.compare(this.uniformAlphas, s.getUniformAlphas());

@@ -2,19 +2,21 @@ package com.comparator.common.service;
 
 import java.util.List;
 
+import static com.comparator.version.util.Constants.*;
+
 public class ListComparator<T extends Comparable<T>> {
 
     public int compare(List<T> listA, List<T> listB) {
-        int result = 0;
+        int result = COMPARABLE_EQUAL;
         int index = 0;
         int minSubVersionsCount = Math.min(listA.size(), listB.size());
 
-        while (result == 0 && index < minSubVersionsCount) {
+        while (result == COMPARABLE_EQUAL && index < minSubVersionsCount) {
             result = listA.get(index).compareTo(listB.get(index));
             index ++;
         }
-        if (result == 0 && (listA.size() != listB.size())) {
-            result = (listA.size() < listB.size()) ? -1 : 1;
+        if (result == COMPARABLE_EQUAL && (listA.size() != listB.size())) {
+            result = (listA.size() < listB.size()) ? COMPARABLE_LOWER : COMPARABLE_HIGHER;
         }
         return result;
     }

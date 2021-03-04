@@ -34,7 +34,7 @@ public class Version implements Comparable<Version> {
     @Override
     public int compareTo(Version v) {
         if (versionString.equals(v.getVersionString())) {
-            return 0;
+            return COMPARABLE_EQUAL;
         } else {
             ListComparator<Alpha> subVersionsComparator = new ListComparator<>();
             return subVersionsComparator.compare(this.subVersions, v.getSubVersions());
