@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.comparator</groupId>
-	<artifactId>versionchecker</artifactId>
+	<artifactId>comparator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>versionchecker</name>
+	<name>comparator</name>
 	<description>Web Service to compare String versions</description>
 	<properties>
 		<java.version>8</java.version>

@@ -1,4 +1,4 @@
-package com.comparator.versionchecker;
+package com.comparator.version;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

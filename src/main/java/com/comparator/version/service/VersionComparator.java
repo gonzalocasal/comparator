@@ -1,10 +1,10 @@
-package com.comparator.versionchecker.service;
+package com.comparator.version.service;
 
-import com.comparator.versionchecker.model.Conclusion;
-import com.comparator.versionchecker.model.Version;
+import com.comparator.version.model.Conclusion;
+import com.comparator.version.model.Version;
 import org.springframework.stereotype.Service;
 
-import static com.comparator.versionchecker.model.Conclusion.*;
+import static com.comparator.version.model.Conclusion.*;
 
 @Service
 public class VersionComparator {

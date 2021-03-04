@@ -1,8 +1,8 @@
-package com.comparator.versionchecker.rest;
+package com.comparator.version.rest;
 
-import com.comparator.versionchecker.model.Conclusion;
-import com.comparator.versionchecker.service.InputSanitizer;
-import com.comparator.versionchecker.service.VersionComparator;
+import com.comparator.version.model.Conclusion;
+import com.comparator.version.service.VersionSanitizer;
+import com.comparator.version.service.VersionComparator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("versions/compare")
 public class VersionsController {
 
-  private final InputSanitizer inputSanitizer;
+  private final VersionSanitizer inputSanitizer;
   private final VersionComparator versionComparator;
 
   @Value("${template.versions.compare.response}")
   private String responseTemplate;
 
-  public VersionsController(InputSanitizer inputSanitizer, VersionComparator versionComparator) {
+  public VersionsController(VersionSanitizer inputSanitizer, VersionComparator versionComparator) {
     this.inputSanitizer = inputSanitizer;
     this.versionComparator = versionComparator;
   }

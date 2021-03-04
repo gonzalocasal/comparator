@@ -1,4 +1,4 @@
-package com.comparator.versionchecker.service;
+package com.comparator.common.service;
 
 import java.util.List;
 

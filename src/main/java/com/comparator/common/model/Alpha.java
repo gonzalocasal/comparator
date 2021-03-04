@@ -1,13 +1,12 @@
 package com.comparator.common.model;
 
-import com.comparator.versionchecker.service.ListComparator;
+import com.comparator.common.service.ListComparator;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Character.getType;
-import static java.lang.Character.isDigit;
 
 @Getter
 public class Alpha implements Comparable<Alpha> {

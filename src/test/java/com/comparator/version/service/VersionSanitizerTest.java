@@ -1,13 +1,13 @@
-package com.comparator.versionchecker.service;
+package com.comparator.version.service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InputSanitizerTest {
+public class VersionSanitizerTest {
 
-    private final InputSanitizer inputSanitizer = new InputSanitizer();
+    private final VersionSanitizer inputSanitizer = new VersionSanitizer();
 
     @Test
     void sanitizerTest() {

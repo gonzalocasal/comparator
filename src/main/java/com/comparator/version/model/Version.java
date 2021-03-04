@@ -1,7 +1,7 @@
-package com.comparator.versionchecker.model;
+package com.comparator.version.model;
 
 import com.comparator.common.model.Alpha;
-import com.comparator.versionchecker.service.ListComparator;
+import com.comparator.common.service.ListComparator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.comparator.versionchecker.util.Constants.VERSION_SPLIT_REGEX;
+import static com.comparator.version.util.Constants.VERSION_SPLIT_REGEX;
 
 @Getter
 @AllArgsConstructor
