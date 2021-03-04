@@ -14,13 +14,12 @@ public class Messages {
     public static String errorSpecialCharactersInput;
     public static String messageCompareVersions;
 
-
-    @Value("${message.error.no.alphanumeric.input}")
+    @Value("${message.error.version.no.alphanumeric.input}")
     public void setErrorNoAlphanumericInput(String message) {
         Messages.errorNoAlphanumericInput = message;
     }
 
-    @Value("${message.error.special.characters.input}")
+    @Value("${message.error.version.special.characters.input}")
     public void setErrorSpecialCharactersInput(String message) {
         Messages.errorSpecialCharactersInput = message;
     }
@@ -29,9 +28,5 @@ public class Messages {
     public void setMessageCompareVersions(String message) {
         Messages.messageCompareVersions = message;
     }
-
-
-
-
 
 }

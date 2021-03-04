@@ -1,11 +1,11 @@
-package com.comparator.common.exception;
+package com.comparator.version.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-public class AlphanumericException extends ResponseStatusException {
+public class VersionException extends ResponseStatusException {
 
-    public AlphanumericException(String errorMessage){
+    public VersionException(String errorMessage){
         super(HttpStatus.BAD_REQUEST, errorMessage);
     }
 }

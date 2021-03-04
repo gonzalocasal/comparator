@@ -1,6 +1,6 @@
 package com.comparator.version.model;
 
-import com.comparator.common.exception.AlphanumericException;
+import com.comparator.version.exception.VersionException;
 import com.comparator.common.model.Alpha;
 import com.comparator.common.service.ListComparator;
 import lombok.AllArgsConstructor;
@@ -45,12 +45,12 @@ public class Version implements Comparable<Version> {
 
         if (versionInput.replaceAll(ALPHANUMERIC_REGEX, "").isEmpty()) {
             log.error(errorNoAlphanumericInput);
-            throw new AlphanumericException(errorNoAlphanumericInput);
+            throw new VersionException(errorNoAlphanumericInput);
         }
 
         if (versionInput.replaceAll(VERSION_REGEX, "").length() != versionInput.length()) {
             log.error(errorSpecialCharactersInput);
-            throw new AlphanumericException(errorSpecialCharactersInput);
+            throw new VersionException(errorSpecialCharactersInput);
         }
 
         return versionInput.replaceAll(VERSION_REGEX, "");
