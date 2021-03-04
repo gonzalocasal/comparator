@@ -1,4 +1,4 @@
-package com.comparator.version;
+package com.comparator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
