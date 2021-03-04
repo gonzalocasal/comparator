@@ -20,7 +20,3 @@ public class ListComparator<T extends Comparable<T>> {
     }
 
 }
-
-
-
-

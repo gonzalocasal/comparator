@@ -1,34 +1,39 @@
 package com.comparator.version.model;
 
+import com.comparator.common.exception.NoAlphaInput;
 import com.comparator.common.model.Alpha;
 import com.comparator.common.service.ListComparator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-import static com.comparator.version.util.Constants.VERSION_SPLIT_REGEX;
+import static com.comparator.version.util.Constants.*;
+import static com.comparator.version.util.Messages.errorNoAlphanumericInput;
+import static com.comparator.version.util.Messages.errorSpecialCharactersInput;
+
 
 @Getter
+@Slf4j
 @AllArgsConstructor
 public class Version implements Comparable<Version> {
 
-    private final Alpha versionAlpha;
+    private final String versionString;
     private final List<Alpha> subVersions;
 
-    public Version(String versionString) {
-        this.versionAlpha = new Alpha(versionString);
+    public Version(String versionInput) {
+        this.versionString = buildVersionString(versionInput);
         this.subVersions = new ArrayList<>();
-        List<String> subVersionStrings = Arrays.asList(versionAlpha.getAlphanumeric().split(VERSION_SPLIT_REGEX));
+        List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
         subVersionStrings.forEach((s -> subVersions.add(new Alpha(s))));
     }
 
     @Override
     public int compareTo(Version v) {
-        if (versionAlpha.getAlphanumeric().equals(v.getVersionAlpha().getAlphanumeric())) {
+        if (versionString.equals(v.getVersionString())) {
             return 0;
         } else {
             ListComparator<Alpha> subVersionsComparator = new ListComparator<>();
@@ -36,5 +41,19 @@ public class Version implements Comparable<Version> {
         }
     }
 
-}
+    private String buildVersionString(String versionInput) {
 
+        if (versionInput.replaceAll(ALPHANUMERIC_REGEX, "").isEmpty()) {
+            log.error(errorNoAlphanumericInput);
+            throw new NoAlphaInput(errorNoAlphanumericInput);
+        }
+
+        if (versionInput.replaceAll(VERSION_REGEX, "").length() != versionInput.length()) {
+            log.error(errorSpecialCharactersInput);
+            throw new NoAlphaInput(errorSpecialCharactersInput);
+        }
+
+        return versionInput.replaceAll(VERSION_REGEX, "");
+    }
+
+}

@@ -31,4 +31,3 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
         return 0;
     }
 }
-

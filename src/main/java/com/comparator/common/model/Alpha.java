@@ -44,4 +44,3 @@ public class Alpha implements Comparable<Alpha> {
         }
     }
 }
-
