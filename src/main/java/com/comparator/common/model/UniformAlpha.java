@@ -17,7 +17,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
     private final boolean isDigit;
 
     public UniformAlpha(String uniformAlpha) {
-        this.uniformAlpha = validate(uniformAlpha);
+        this.uniformAlpha = validate(uniformAlpha.replaceAll(ALPHANUMERIC_REGEX, ""));
         this.isDigit = !uniformAlpha.isEmpty() && Character.isDigit(uniformAlpha.charAt(0));
     }
 
@@ -34,18 +34,18 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
     }
 
     @Override
-    public int compareTo(UniformAlpha st) {
-        if (this.isDigit && st.isDigit()) {
-            return Integer.compare(Integer.parseInt(this.getUniformAlpha()), Integer.parseInt(st.getUniformAlpha()));
+    public int compareTo(UniformAlpha ua) {
+        if (this.isDigit && ua.isDigit()) {
+            return Integer.compare(Integer.parseInt(this.getUniformAlpha()), Integer.parseInt(ua.getUniformAlpha()));
         }
-        if (!this.isDigit && st.isDigit()) {
+        if (!this.isDigit && ua.isDigit()) {
             return COMPARABLE_HIGHER;
         }
-        if (this.isDigit && !st.isDigit()) {
+        if (this.isDigit && !ua.isDigit()) {
             return COMPARABLE_LOWER;
         }
-        if (!this.isDigit && !st.isDigit()) {
-            return this.uniformAlpha.compareTo(st.getUniformAlpha());
+        if (!this.isDigit && !ua.isDigit()) {
+            return this.uniformAlpha.compareTo(ua.getUniformAlpha());
         }
 
         return COMPARABLE_EQUAL;
