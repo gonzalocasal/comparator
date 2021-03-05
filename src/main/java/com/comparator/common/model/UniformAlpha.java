@@ -23,7 +23,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
 
     private String validate (String uniformAlpha) {
         if (!uniformAlpha.isEmpty()) {
-        int type = getType(uniformAlpha.charAt(0));
+            int type = getType(uniformAlpha.charAt(0));
             for (char c : uniformAlpha.toCharArray()) {
                 if (getType(c) != type) {
                     throw new UniformAlphaException(Messages.errorNoUniformAlphaInput);
