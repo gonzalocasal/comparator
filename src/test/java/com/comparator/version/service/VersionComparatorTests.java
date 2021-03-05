@@ -1,9 +1,9 @@
-package com.comparator.version.model;
+package com.comparator.version.service;
 
+import com.comparator.version.model.Conclusion;
 import com.comparator.version.service.VersionComparator;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-
 
 class VersionComparatorTests {
 
