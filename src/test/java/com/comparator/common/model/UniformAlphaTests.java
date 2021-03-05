@@ -25,6 +25,11 @@ public class UniformAlphaTests {
 
         Assertions.assertEquals("3", uniformAlphas.get(2).getUniformAlpha());
         Assertions.assertTrue(uniformAlphas.get(2).isDigit());
+
+        List<UniformAlpha> parse = UniformAlpha.parse("!@#$%^&1199");
+        UniformAlpha uniformAlpha = parse.get(0);
+        Assertions.assertEquals("1199", uniformAlpha.getUniformAlpha());
+        Assertions.assertTrue(uniformAlpha.isDigit());
     }
 
     @Test
