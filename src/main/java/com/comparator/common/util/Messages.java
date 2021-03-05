@@ -1,4 +1,4 @@
-package com.comparator.version.util;
+package com.comparator.common.util;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +10,15 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:messages.properties")
 public class Messages {
 
+    public static String errorNoUniformAlphaInput;
     public static String errorNoAlphanumericInput;
     public static String errorSpecialCharactersInput;
     public static String messageCompareVersions;
+
+    @Value("${message.error.common.no.uniform.alphanumeric.input}")
+    public void setErrorUniformAlphaInput (String message) {
+        Messages.errorNoUniformAlphaInput = message;
+    }
 
     @Value("${message.error.version.no.alphanumeric.input}")
     public void setErrorNoAlphanumericInput(String message) {

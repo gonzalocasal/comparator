@@ -2,7 +2,7 @@ package com.comparator.version.rest.dto;
 
 import com.comparator.version.model.Conclusion;
 
-import static com.comparator.version.util.Messages.messageCompareVersions;
+import static com.comparator.common.util.Messages.messageCompareVersions;
 
 
 public class VersionCompareResponse {

@@ -1,4 +1,4 @@
-package com.comparator.version.util;
+package com.comparator.common.util;
 
 public class Constants {
     public static final String ALPHANUMERIC_REGEX = "[^a-zA-Z0-9]";

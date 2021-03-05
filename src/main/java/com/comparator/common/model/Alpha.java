@@ -3,12 +3,10 @@ package com.comparator.common.model;
 import com.comparator.common.service.ListComparator;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.comparator.version.util.Constants.ALPHANUMERIC_REGEX;
-import static com.comparator.version.util.Constants.COMPARABLE_EQUAL;
-import static java.lang.Character.getType;
+import static com.comparator.common.util.Constants.ALPHANUMERIC_REGEX;
+import static com.comparator.common.util.Constants.COMPARABLE_EQUAL;
 
 @Getter
 public class Alpha implements Comparable<Alpha> {
@@ -18,21 +16,7 @@ public class Alpha implements Comparable<Alpha> {
 
     public Alpha(String alphaNumeric) {
         this.alphanumeric = alphaNumeric.replaceAll(ALPHANUMERIC_REGEX, "");
-        this.uniformAlphas = new ArrayList<>();
-        buildUniformAlphas(alphaNumeric);
-    }
-
-    private void buildUniformAlphas(String alphanumeric) {
-        if (!alphanumeric.isEmpty()) {
-            int index = 0;
-            int type = getType(alphanumeric.charAt(index));
-            while (index < alphanumeric.length() && type == getType(alphanumeric.charAt(index))) {
-                index ++;
-            }
-            String uniformAlpha = alphanumeric.substring(0, index);
-            uniformAlphas.add(new UniformAlpha(uniformAlpha));
-            buildUniformAlphas(alphanumeric.replace(uniformAlpha, ""));
-        }
+        this.uniformAlphas = UniformAlpha.parse(alphaNumeric);
     }
 
     @Override

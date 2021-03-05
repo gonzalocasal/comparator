@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.comparator.version.util.Constants.*;
-import static com.comparator.version.util.Messages.errorNoAlphanumericInput;
-import static com.comparator.version.util.Messages.errorSpecialCharactersInput;
+import static com.comparator.common.util.Constants.*;
+import static com.comparator.common.util.Messages.errorNoAlphanumericInput;
+import static com.comparator.common.util.Messages.errorSpecialCharactersInput;
 
 
 @Getter
@@ -25,7 +25,7 @@ public class Version implements Comparable<Version> {
     private final List<Alpha> subVersions;
 
     public Version(String versionInput) {
-        this.versionString = buildVersionString(versionInput);
+        this.versionString = validate(versionInput);
         this.subVersions = new ArrayList<>();
         List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
         subVersionStrings.forEach((s -> subVersions.add(new Alpha(s))));
@@ -41,7 +41,7 @@ public class Version implements Comparable<Version> {
         }
     }
 
-    private String buildVersionString(String versionInput) {
+    private String validate(String versionInput) {
 
         if (versionInput.replaceAll(ALPHANUMERIC_REGEX, "").isEmpty()) {
             log.error(errorNoAlphanumericInput);
