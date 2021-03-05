@@ -1,13 +1,13 @@
 package com.comparator.common.model;
 
 import com.comparator.common.exception.UniformAlphaException;
-import com.comparator.common.util.Messages;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.comparator.common.util.Constants.*;
+import static com.comparator.common.util.Messages.errorNoUniformAlphaInput;
 import static java.lang.Character.getType;
 
 @Getter
@@ -26,7 +26,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
             int type = getType(uniformAlpha.charAt(0));
             for (char c : uniformAlpha.toCharArray()) {
                 if (getType(c) != type) {
-                    throw new UniformAlphaException(Messages.errorNoUniformAlphaInput);
+                    throw new UniformAlphaException(errorNoUniformAlphaInput);
                 }
             }
         }
