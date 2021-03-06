@@ -20,7 +20,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
     private final boolean isDigit;
 
     public UniformAlpha(String uniformAlpha) {
-        this.uniformAlpha = validate(uniformAlpha.replaceAll(ALPHANUMERIC_REGEX, ""));
+        this.uniformAlpha = validate(Alpha.parse(uniformAlpha));
         this.isDigit = !uniformAlpha.isEmpty() && Character.isDigit(uniformAlpha.charAt(0));
     }
 
