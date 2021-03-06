@@ -1,15 +1,18 @@
 package com.comparator.common.model;
 
 import com.comparator.common.exception.UniformAlphaException;
-import com.comparator.common.util.Messages;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.comparator.common.util.Constants.*;
+import static com.comparator.common.util.Messages.errorNoUniformAlphaInput;
 import static java.lang.Character.getType;
 
+/**
+ * Represents a homogeneous type String
+ */
 @Getter
 public class UniformAlpha implements Comparable<UniformAlpha> {
 
@@ -23,14 +26,43 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
 
     private String validate (String uniformAlpha) {
         if (!uniformAlpha.isEmpty()) {
-        int type = getType(uniformAlpha.charAt(0));
+            int type = getType(uniformAlpha.charAt(0));
             for (char c : uniformAlpha.toCharArray()) {
                 if (getType(c) != type) {
-                    throw new UniformAlphaException(Messages.errorNoUniformAlphaInput);
+                    throw new UniformAlphaException(errorNoUniformAlphaInput);
                 }
             }
         }
         return uniformAlpha;
+    }
+
+    /**
+     * @return a List of homogeneous alphanumeric type SubString,
+     * e.g. 17bc8 as input String, will return the list [17,bc,8]
+     */
+    public static List<UniformAlpha> split(String input) {
+        List<UniformAlpha> uniformAlphas = new ArrayList<>();
+        buildList(uniformAlphas, Alpha.parse(input));
+        return uniformAlphas;
+    }
+
+    private static void buildList(List<UniformAlpha> uniformAlphas, String alphanumeric) {
+        if (!alphanumeric.isEmpty()) {
+            int index = 0;
+            int type = getType(alphanumeric.charAt(index));
+            while (index < alphanumeric.length() && type == getType(alphanumeric.charAt(index))) {
+                index ++;
+            }
+            String uniformAlpha = alphanumeric.substring(0, index);
+            uniformAlphas.add(new UniformAlpha(uniformAlpha, Character.isDigit(uniformAlpha.charAt(0))));
+
+            buildList(uniformAlphas, alphanumeric.replace(uniformAlpha, ""));
+        }
+    }
+
+    private UniformAlpha(String uniformAlpha, boolean isDigit) {
+        this.uniformAlpha = uniformAlpha;
+        this.isDigit = isDigit;
     }
 
     @Override
@@ -50,24 +82,4 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
 
         return COMPARABLE_EQUAL;
     }
-
-    public static List<UniformAlpha> parse(String alphanumeric) {
-        List<UniformAlpha> uniformAlphas = new ArrayList<>();
-        build(uniformAlphas, alphanumeric.replaceAll(ALPHANUMERIC_REGEX, ""));
-        return uniformAlphas;
-    }
-
-    private static void build(List<UniformAlpha> uniformAlphas, String alphanumeric) {
-        if (!alphanumeric.isEmpty()) {
-            int index = 0;
-            int type = getType(alphanumeric.charAt(index));
-            while (index < alphanumeric.length() && type == getType(alphanumeric.charAt(index))) {
-                index ++;
-            }
-            String uniformAlpha = alphanumeric.substring(0, index);
-            uniformAlphas.add(new UniformAlpha(uniformAlpha));
-            build(uniformAlphas, alphanumeric.replace(uniformAlpha, ""));
-        }
-    }
-
 }

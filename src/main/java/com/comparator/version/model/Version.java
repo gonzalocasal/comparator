@@ -1,8 +1,8 @@
 package com.comparator.version.model;
 
-import com.comparator.version.exception.VersionException;
 import com.comparator.common.model.Alpha;
 import com.comparator.common.service.ListComparator;
+import com.comparator.version.exception.VersionException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.comparator.common.util.Constants.*;
-import static com.comparator.common.util.Messages.errorNoAlphanumericInput;
 import static com.comparator.common.util.Messages.errorSpecialCharactersInput;
 
-
+/**
+ * Represents a Version with the String value and a list of each sub version split by dots,
+ * e.g. 7.3ab.1 Version object will have a list of Alphanumeric [7,3ab,1]
+ */
 @Getter
 @Slf4j
 @AllArgsConstructor
@@ -24,11 +26,24 @@ public class Version implements Comparable<Version> {
     private final String versionString;
     private final List<Alpha> subVersions;
 
-    public Version(String versionInput) {
-        this.versionString = validate(versionInput);
+    public Version(String input) {
+        this.versionString = validate(input);
         this.subVersions = new ArrayList<>();
+
         List<String> subVersionStrings = Arrays.asList(versionString.split(VERSION_SPLIT_REGEX));
         subVersionStrings.forEach((s -> subVersions.add(new Alpha(s))));
+    }
+
+    /**
+     * @implNote validates the input String. Version only allows alphanumerics and dots.
+     */
+    private String validate(String input) {
+        String versionParsed = input.replaceAll(VERSION_REGEX, "");
+        if (versionParsed.length() != input.length()) {
+            log.error(errorSpecialCharactersInput);
+            throw new VersionException(errorSpecialCharactersInput);
+        }
+        return versionParsed;
     }
 
     @Override
@@ -40,20 +55,4 @@ public class Version implements Comparable<Version> {
             return subVersionsComparator.compare(this.subVersions, v.getSubVersions());
         }
     }
-
-    private String validate(String versionInput) {
-
-        if (versionInput.replaceAll(ALPHANUMERIC_REGEX, "").isEmpty()) {
-            log.error(errorNoAlphanumericInput);
-            throw new VersionException(errorNoAlphanumericInput);
-        }
-
-        if (versionInput.replaceAll(VERSION_REGEX, "").length() != versionInput.length()) {
-            log.error(errorSpecialCharactersInput);
-            throw new VersionException(errorSpecialCharactersInput);
-        }
-
-        return versionInput.replaceAll(VERSION_REGEX, "");
-    }
-
 }

@@ -1,9 +1,6 @@
 package com.comparator.common.model;
 
 import com.comparator.common.exception.UniformAlphaException;
-import com.comparator.version.exception.VersionException;
-import com.comparator.version.model.Version;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +12,7 @@ public class UniformAlphaTests {
 
     @Test
     void parseTest() {
-        List<UniformAlpha> uniformAlphas = UniformAlpha.parse("21abc3");
+        List<UniformAlpha> uniformAlphas = UniformAlpha.split("21abc3");
 
         Assertions.assertEquals("21", uniformAlphas.get(0).getUniformAlpha());
         Assertions.assertTrue(uniformAlphas.get(0).isDigit());
@@ -26,7 +23,7 @@ public class UniformAlphaTests {
         Assertions.assertEquals("3", uniformAlphas.get(2).getUniformAlpha());
         Assertions.assertTrue(uniformAlphas.get(2).isDigit());
 
-        List<UniformAlpha> parse = UniformAlpha.parse("!@#$%^&1199");
+        List<UniformAlpha> parse = UniformAlpha.split("!@#$%^&1199");
         UniformAlpha uniformAlpha = parse.get(0);
         Assertions.assertEquals("1199", uniformAlpha.getUniformAlpha());
         Assertions.assertTrue(uniformAlpha.isDigit());
@@ -38,8 +35,6 @@ public class UniformAlphaTests {
         Assertions.assertEquals("21", uniformAlpha.getUniformAlpha());
         Assertions.assertTrue(uniformAlpha.isDigit());
     }
-
-
 
     @Test
     void uniformExceptionExceptionTests() {

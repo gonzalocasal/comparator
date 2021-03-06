@@ -1,7 +1,6 @@
 package com.comparator.version.model;
 
 import com.comparator.version.exception.VersionException;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
