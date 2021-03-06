@@ -11,7 +11,7 @@ import static com.comparator.common.util.Messages.errorNoUniformAlphaInput;
 import static java.lang.Character.getType;
 
 /**
- * Represents a homogeneous type String
+ * Represents a homogeneous type of Alphanumeric String
  */
 @Getter
 public class UniformAlpha implements Comparable<UniformAlpha> {
