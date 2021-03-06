@@ -31,7 +31,7 @@ public class UniformAlphaTests {
 
     @Test
     void uniformAlphaCreationTest() {
-        UniformAlpha uniformAlpha = new UniformAlpha("21");
+        UniformAlpha uniformAlpha = new UniformAlpha("21#@!");
         Assertions.assertEquals("21", uniformAlpha.getUniformAlpha());
         Assertions.assertTrue(uniformAlpha.isDigit());
     }
