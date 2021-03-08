@@ -15,12 +15,12 @@ import static com.comparator.common.util.Constants.COMPARABLE_EQUAL;
 @Getter
 public class Alpha implements Comparable<Alpha> {
 
-    private final String alphanumeric;
+    private final String value;
     private final List<UniformAlpha> uniformAlphas;
 
     public Alpha(String input) {
-        this.alphanumeric = parse(input);
-        this.uniformAlphas = UniformAlpha.split(alphanumeric);
+        this.value = parse(input);
+        this.uniformAlphas = UniformAlpha.split(value);
     }
 
     public static String parse (String input) {
@@ -29,7 +29,7 @@ public class Alpha implements Comparable<Alpha> {
 
     @Override
     public int compareTo(Alpha s) {
-        if (alphanumeric.equals(s.getAlphanumeric())) {
+        if (value.equals(s.getValue())) {
             return COMPARABLE_EQUAL;
         } else {
             ListComparator<UniformAlpha> subVersionsTypesComparator = new ListComparator<>();

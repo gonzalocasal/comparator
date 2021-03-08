@@ -7,9 +7,12 @@ public class AlphaTests {
 
     @Test
     void alphanumericCreationTest() {
-        Alpha alpha = new Alpha("21abc3");
-        Assertions.assertEquals("21abc3", alpha.getAlphanumeric());
-        Assertions.assertEquals(3, alpha.getUniformAlphas().size());
+        Alpha alpha = new Alpha("21abc1abc3");
+        Assertions.assertEquals("21abc1abc3", alpha.getValue());
+        Assertions.assertEquals(5, alpha.getUniformAlphas().size());
+
+        alpha = new Alpha("$%&@#/(");
+        Assertions.assertTrue(alpha.getValue().isEmpty());
     }
 
 }

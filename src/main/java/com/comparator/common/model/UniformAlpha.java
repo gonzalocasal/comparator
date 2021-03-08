@@ -16,24 +16,28 @@ import static java.lang.Character.getType;
 @Getter
 public class UniformAlpha implements Comparable<UniformAlpha> {
 
-    private final String uniformAlpha;
+    private final String value;
     private final boolean isDigit;
 
-    public UniformAlpha(String uniformAlpha) {
-        this.uniformAlpha = validate(Alpha.parse(uniformAlpha));
-        this.isDigit = !uniformAlpha.isEmpty() && Character.isDigit(uniformAlpha.charAt(0));
+    public UniformAlpha(String input) {
+        this.value = validate(input);
+        this.isDigit = !input.isEmpty() && Character.isDigit(input.charAt(0));
     }
 
-    private String validate (String uniformAlpha) {
-        if (!uniformAlpha.isEmpty()) {
-            int type = getType(uniformAlpha.charAt(0));
-            for (char c : uniformAlpha.toCharArray()) {
+    /**
+     * @implNote validates that the input is homogeneous type alphanumeric.
+     */
+    private String validate (String input) {
+        String inputParsed = Alpha.parse(input);
+        if (!inputParsed.isEmpty()) {
+            int type = getType(inputParsed.charAt(0));
+            for (char c : inputParsed.toCharArray()) {
                 if (getType(c) != type) {
                     throw new UniformAlphaException(errorNoUniformAlphaInput);
                 }
             }
         }
-        return uniformAlpha;
+        return inputParsed;
     }
 
     /**
@@ -46,6 +50,9 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
         return uniformAlphas;
     }
 
+    /**
+     * @implNote  Private secure constructor to be used by the Split process
+     */
     private static void buildList(List<UniformAlpha> uniformAlphas, String alphanumeric) {
         if (!alphanumeric.isEmpty()) {
             int index = 0;
@@ -56,19 +63,22 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
             String uniformAlpha = alphanumeric.substring(0, index);
             uniformAlphas.add(new UniformAlpha(uniformAlpha, Character.isDigit(uniformAlpha.charAt(0))));
 
-            buildList(uniformAlphas, alphanumeric.replace(uniformAlpha, ""));
+            buildList(uniformAlphas, alphanumeric.replaceFirst(uniformAlpha, ""));
         }
     }
 
-    private UniformAlpha(String uniformAlpha, boolean isDigit) {
-        this.uniformAlpha = uniformAlpha;
+    /**
+     * Private secure constructor to be used by the Split process
+     */
+    private UniformAlpha(String value, boolean isDigit) {
+        this.value = value;
         this.isDigit = isDigit;
     }
 
     @Override
     public int compareTo(UniformAlpha ua) {
         if (this.isDigit && ua.isDigit()) {
-            return Integer.compare(Integer.parseInt(this.getUniformAlpha()), Integer.parseInt(ua.getUniformAlpha()));
+            return Integer.compare(Integer.parseInt(this.getValue()), Integer.parseInt(ua.getValue()));
         }
         if (!this.isDigit && ua.isDigit()) {
             return COMPARABLE_HIGHER;
@@ -77,7 +87,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
             return COMPARABLE_LOWER;
         }
         if (!this.isDigit && !ua.isDigit()) {
-            return this.uniformAlpha.compareTo(ua.getUniformAlpha());
+            return this.value.compareTo(ua.getValue());
         }
 
         return COMPARABLE_EQUAL;

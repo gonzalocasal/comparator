@@ -14,25 +14,25 @@ public class UniformAlphaTests {
     void parseTest() {
         List<UniformAlpha> uniformAlphas = UniformAlpha.split("21abc3");
 
-        Assertions.assertEquals("21", uniformAlphas.get(0).getUniformAlpha());
+        Assertions.assertEquals("21", uniformAlphas.get(0).getValue());
         Assertions.assertTrue(uniformAlphas.get(0).isDigit());
 
-        Assertions.assertEquals("abc", uniformAlphas.get(1).getUniformAlpha());
+        Assertions.assertEquals("abc", uniformAlphas.get(1).getValue());
         Assertions.assertFalse(uniformAlphas.get(1).isDigit());
 
-        Assertions.assertEquals("3", uniformAlphas.get(2).getUniformAlpha());
+        Assertions.assertEquals("3", uniformAlphas.get(2).getValue());
         Assertions.assertTrue(uniformAlphas.get(2).isDigit());
 
         List<UniformAlpha> parse = UniformAlpha.split("!@#$%^&1199");
         UniformAlpha uniformAlpha = parse.get(0);
-        Assertions.assertEquals("1199", uniformAlpha.getUniformAlpha());
+        Assertions.assertEquals("1199", uniformAlpha.getValue());
         Assertions.assertTrue(uniformAlpha.isDigit());
     }
 
     @Test
     void uniformAlphaCreationTest() {
         UniformAlpha uniformAlpha = new UniformAlpha("21#@!");
-        Assertions.assertEquals("21", uniformAlpha.getUniformAlpha());
+        Assertions.assertEquals("21", uniformAlpha.getValue());
         Assertions.assertTrue(uniformAlpha.isDigit());
     }
 

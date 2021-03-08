@@ -13,9 +13,9 @@ public class VersionTests {
         Version version = new Version("11.21abc3.3");
         Assertions.assertEquals("11.21abc3.3", version.getVersionString());
         Assertions.assertEquals(3, version.getSubVersions().size());
-        Assertions.assertEquals("11", version.getSubVersions().get(0).getAlphanumeric());
-        Assertions.assertEquals("21abc3", version.getSubVersions().get(1).getAlphanumeric());
-        Assertions.assertEquals("3", version.getSubVersions().get(2).getAlphanumeric());
+        Assertions.assertEquals("11", version.getSubVersions().get(0).getValue());
+        Assertions.assertEquals("21abc3", version.getSubVersions().get(1).getValue());
+        Assertions.assertEquals("3", version.getSubVersions().get(2).getValue());
     }
 
     @Test
