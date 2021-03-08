@@ -51,7 +51,7 @@ public class UniformAlpha implements Comparable<UniformAlpha> {
     }
 
     /**
-     * @implNote  Private secure constructor to be used by the Split process
+     * @implNote collect and set recursively each substring group with the same type
      */
     private static void buildList(List<UniformAlpha> uniformAlphas, String alphanumeric) {
         if (!alphanumeric.isEmpty()) {
